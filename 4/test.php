@@ -238,17 +238,6 @@ print_r($spisok);
 print '<br>';
 print '<br>';
 	
-/*
-<?php
-// Obtain a list of columns
-foreach ($data as $key => $row) {
-    $mid[$key]  = $row['mid'];
-}
-
-*/
-
-
-
 // 22) Условные операторы if, else, if
 
 /**
