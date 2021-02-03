@@ -34,16 +34,67 @@ echo '<br>';
 echo 'Упражнение 2';
 echo '<br>';
 
+// формула расчета формы nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);
+// отсюда http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms.html?id=l10n/pluralforms
+
+/* 1 вариант
+
 function form($num, $form1, $form2, $form3) {
-		if($num % 10 === 1 && $num % 100 != 11) {
-			return $num.' '.$form1;
-		}
-		if(($num % 10 > 1 && $num % 10 < 5) && ($num % 100 > 15 || $num % 100 < 11)) {
-			return $num.' '.$form2;
-		}
-	return $num.' '.$form3;
+	$result = $num . ' ' . $form3;
+	if (1 === $num % 10 && 11 != $num % 100) {
+		$result = $num . ' ' . $form1;
+    	} elseif (($num % 10 > 1 && $num % 10 < 5) && ($num % 100 > 15 || $num % 100 < 11)) {
+    		$result = $num . ' ' . $form2;
+    	}
+    	
+    	return $result;
 }
-echo form(3, 'яблоко', 'яблока', 'яблок');
+echo form(4,'яблоко', 'яблока', 'яблок' );
+echo '<br>';
+*/
+
+/* 2 вариант
+
+function form($num, $form1, $form2, $form3) {
+	$num1 = $num % 10; // получаем последнюю цифру
+	$num2 = $num % 100; // получаем последние две цифры
+	
+	$result = $num . ' ' . $form3;
+	if (1 === $num1 && 11 != $num1) {
+		$result = $num . ' ' . $form1;
+	} elseif (($num1 > 1 && $num1 < 5) && ($num2 > 15 || $num2 < 11)) {
+		$result = $num . ' ' . $form2;
+	}
+
+    	return $result;
+}
+echo form(4,'яблоко', 'яблока', 'яблок' );
+
+*/
+
+// 3 вариант
+// не правильно присваивает форму с 12 по 14
+	
+function form(string $num, $form1, $form2, $form3) {
+    $num1 = substr($num, -2); // получаем последние две цифры
+    $num2 = substr($num, -1); // получаем последнюю цифру
+    
+    if ($num1 >10 && $num1 < 20) {
+    	$result = $num . ' ' . $form3;
+    }
+    
+    switch($num2) {
+	case '1': $result = $num . ' ' . $form1; break;
+	case '2': $result = $num . ' ' . $form2; break;
+        case '3': $result = $num . ' ' . $form2; break;
+        case '4': $result = $num . ' ' . $form2; break;
+        default: $result = $num . ' ' . $form3; break;
+     }
+      
+     return $result;
+}
+
+echo form('14', 'яблоко', 'яблока', 'яблок');	
 echo '<br>';
 
 // 3.Найдите все счастливые билеты. Счастливый билет - это билет, в котором сумма первых трех цифр
@@ -51,61 +102,20 @@ echo '<br>';
 echo 'Упражнение 3';
 echo '<br>';
 
-function happyTicket($number) {
-		$right_num = $number % 1000;
-		$left_num = floor($number / 1000);
+function happyTicket(string $number) {
+		$left_num = substr($number,0,3);
+		$right_num = substr($number,strlen($left_num)); 
 			$right_sum = array_sum(str_split($right_num));
-			var_dump($right_sum);
 			$left_sum = array_sum(str_split($left_num)); 
-			var_dump($left_sum);
 				if ($right_sum === $left_sum) {
-					return 'Happy ticket';
+					$ticket = 'Happy ticket';
 				} else {
-					return 'Try one more time';
-			}
-}								
-echo happyTicket(030300);
-
+					$ticket =  'Try one more time';
+				}		
+				return $ticket;
+}									
+echo happyTicket('937992');
 echo '<br>';
-echo '<br>';
-
-/*
-
-#030300 - счастливый билет
-
-- первый блок - находим $right_num и $left_num, число слева и число справа:
-
-$right_num = $num % 1000;
-произведем деление по модулю, 030300 % 1000:
-1) 030300 / 1000 = 30,3
-2) 30 * 1000 = 30000
-3) 030300 - 30000 = 300
-
-$right_num = 300
-
-
-$left_num = floor($num / 1000);
-030300 / 1000 = 30,3
-округляем дробь в меншую сторону, т.е. к 30
-
-$left_num = 30
-
-- второй блок; находим сумму цифр найденых чисел из первого блока
-
-преобразуем числа в массивы и найдем сумму цифр каждого массива
-
-$right_sum = 3 + 0 + 0 = 3;
-$left_num = 3 + 0 = 3;
-
-
-- сравним полученые суммы:
-
-3 = 3, т.е. в выводе должно быть 'Happy ticket', а я вижу - 'Try one more time' 
-
-*/
-
-
-
 
 /* 4.Дружественные числа - два различных числа, для которых сумма всех собственных делителей первого
 числа равна второму числу и наоборот, сумма всех собственных делителей второго числа равна первому числу.
