@@ -13,13 +13,13 @@ function translit($str){
 	       	'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф',
 	       	'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я',
 	       	'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й',
-	      		'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф',
-	      		'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я' ];
+	       	'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф',
+	       	'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я' ];
 		$en = [ 'A', 'B', 'V', 'G', 'D', 'E', 'IO', 'ZH', 'Z', 'I', 'I',
 	       	'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F',
 	       	'H', 'C', 'CH', 'SH', 'SH', '`', 'Y', '`', 'E', 'IU', 'IA',
 	       	'a', 'b', 'v', 'g', 'd', 'e', 'io', 'zh', 'z', 'i', 'i',
-	      		'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f',
+	       	'k', 'l', 'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'f',
 	       	'h', 'c', 'ch', 'sh', 'sh', '`', 'y', '`', 'e', 'iu', 'ia' ];
 		return str_replace($ru, $en, $str);
 }
@@ -50,7 +50,6 @@ function form($num, $form1, $form2, $form3) {
     	return $result;
 }
 echo form(4,'яблоко', 'яблока', 'яблок' );
-echo '<br>';
 */
 
 /* 2 вариант
@@ -69,32 +68,34 @@ function form($num, $form1, $form2, $form3) {
     	return $result;
 }
 echo form(4,'яблоко', 'яблока', 'яблок' );
-
 */
 
 // 3 вариант
-// не правильно присваивает форму с 12 по 14
 	
 function form(string $num, $form1, $form2, $form3) {
     $num1 = substr($num, -2); // получаем последние две цифры
     $num2 = substr($num, -1); // получаем последнюю цифру
     
-    if ($num1 >10 && $num1 < 20) {
-    	$result = $num . ' ' . $form3;
-    }
-    
-    switch($num2) {
-	case '1': $result = $num . ' ' . $form1; break;
-	case '2': $result = $num . ' ' . $form2; break;
-        case '3': $result = $num . ' ' . $form2; break;
-        case '4': $result = $num . ' ' . $form2; break;
-        default: $result = $num . ' ' . $form3; break;
+switch($num2) {
+	case '1': 
+		$result = $num . ' ' . $form1; 
+	break;
+	case '2':
+	case '3':
+	case '4':
+		$result = $num . ' ' . $form2; 
+        break;
+        default:
+        	$result = $num . ' ' . $form3; 
+        break;
      }
-      
+if ($num1 >10 && $num1 < 20) {
+	$result = $num . ' ' . $form3;
+	}    
      return $result;
-}
 
-echo form('14', 'яблоко', 'яблока', 'яблок');	
+}
+echo form('22', 'яблоко', 'яблока', 'яблок');	
 echo '<br>';
 
 // 3.Найдите все счастливые билеты. Счастливый билет - это билет, в котором сумма первых трех цифр
@@ -126,6 +127,39 @@ echo '<br>';
 функцию, которая находит все делители числа и возвращает их в виде массива. Также сделайте функцию, которая
 параметром принимает массив, а возвращает его сумму.
 */
-		
-// эта еще не готова 		
 
+echo 'Упражнение 4';
+echo '<br>';
+
+//функция находит все делители заданного числа и возвращает их в виде массива
+function getDivisors($num) { 
+	$arr = [];
+	for ($i=1; $i <= $num; $i++) {
+		if ($num % $i === 0) {
+			$arr[] = $i;
+		}
+	}
+	return $arr;	
+	}
+var_dump(getDivisors(10000));
+echo '<br>';
+
+//функция параметром принимает массив и возвращает его сумму
+
+function getDigitsSum($arr) { 
+	return array_sum(getDivisors($arr));
+}
+//var_dump(getDigitsSum([1,2,3]));
+
+$friendly_numbers = [];
+for ($i = 1; $i <= 10000; $i++) {
+    for ($j = $i; $j <= $i; $j++) {
+        if ($i === getDigitsSum($j) and $j === getDigitsSum($i) and $i != $j) {
+            $friendly_numbers[$i] = $j;
+            }
+    }
+    return $i. ' and ' . $j . '<br>';
+}
+
+print_r ($friendly_numbers);
+echo '<br>';
