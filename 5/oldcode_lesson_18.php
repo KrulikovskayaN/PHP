@@ -1,5 +1,6 @@
 <?php
 
+
 // Урок 18. Практика на работу с пользовательскими функциями
 // http://old.code.mu/tasks/php/base/praktika-na-rabotu-s-polzovatelskimi-funkciyami-php.html
 
@@ -8,7 +9,7 @@
 echo 'Упражнение 1';
 echo '<br>';
 
-function translit($str){
+function translit(string $str){
 		$ru = [ 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й',
 	       	'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф',
 	       	'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я',
@@ -131,35 +132,39 @@ echo '<br>';
 echo 'Упражнение 4';
 echo '<br>';
 
+for($i=1; $i<=10000; $i++) {
+	for($j=1; $j<=$i; $j++) {
+		friendlyNumbers($i,$j);
+	}
+}		
+
 //функция находит все делители заданного числа и возвращает их в виде массива
-function getDivisors($num) { 
-	$arr = [];
-	for ($i=1; $i <= $num; $i++) {
+
+function getDivisors(int $num) { 
+	$result = [];
+	for ($i=1; $i < $num; $i++) {
 		if ($num % $i === 0) {
-			$arr[] = $i;
+			$result[] = $i;
 		}
 	}
-	return $arr;	
+	return $result;	
 	}
-var_dump(getDivisors(10000));
-echo '<br>';
+//print_r(getDivisors(220));
 
 //функция параметром принимает массив и возвращает его сумму
 
-function getDigitsSum($arr) { 
-	return array_sum(getDivisors($arr));
+function getDigitsSum(array $result) {
+	$sum = 0;
+	foreach($result as $res) {
+		$sum += $res;
+	}
+	return $sum;
 }
-//var_dump(getDigitsSum([1,2,3]));
+//echo getDigitsSum($result = array(1, 2, 4, 5, 10, 11, 20, 22, 44, 55, 110));
 
-$friendly_numbers = [];
-for ($i = 1; $i <= 10000; $i++) {
-    for ($j = $i; $j <= $i; $j++) {
-        if ($i === getDigitsSum($j) and $j === getDigitsSum($i) and $i != $j) {
-            $friendly_numbers[$i] = $j;
-            }
-    }
-    return $i. ' and ' . $j . '<br>';
+function friendlyNumbers($i,$j) {
+	if (getDigitsSum(getDivisors($i)) === $j && getDigitsSum(getDivisors($j))===$i && $i !== $j) {
+		echo $i . ' and ' . $j . '<br>';
+	
+	}
 }
-
-print_r ($friendly_numbers);
-echo '<br>';
