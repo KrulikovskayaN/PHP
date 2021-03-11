@@ -72,7 +72,7 @@ class Student {
      
     public function transferToNextCourse() {
         if ($this->isCourseCorrect()) {
-            return $this->course + 1;  
+            return $this->course++;  
         }
     }        
             
