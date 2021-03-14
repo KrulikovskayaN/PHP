@@ -14,7 +14,7 @@ class User {
     public $name;
     public $age;
     
-    public function isAgeCorrect($age) {
+    public function isAgeCorrect(int $age) {
         if ($age >= 18 && $age <= 60) {
             return true;
         } else { 
@@ -22,20 +22,20 @@ class User {
         }
     }
     
-    public function setAge($age) {
+    public function setAge(int $age) {
        if ($this->isAgeCorrect($age)) {
             $this->age = $age;
         }
     }
         
-    public function addAge($years) {
+    public function addAge(int $years) {
         $newAge = $this->age + $years;
         if ($this->isAgeCorrect($newAge)) {
             $this->age = $newAge;
         }
     }
     
-    public function subAge($years) {
+    public function subAge(int $years) {
         $newAge = $this->age - $years;
         if ($this->isAgeCorrect($newAge)) {
             $this->age = $newAge;

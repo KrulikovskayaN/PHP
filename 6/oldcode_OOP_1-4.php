@@ -55,7 +55,7 @@ class User {
     public $name;
     public $age;
     
-    public function showW($str) {
+    public function showW(string $str) {
         return $str . '!!!';
     }
 }
@@ -125,7 +125,7 @@ class UserTwo {
     public $name;
     public $age;
     
-    public function setAge($age) {
+    public function setAge(int $age) {
         $this->age = $age;
     }
 }
@@ -145,7 +145,7 @@ echo $userTwo->age;
 class UserTwoT {
     public $age;
     
-    public function setAge($age) {
+    public function setAge(int $age) {
       if ($age >= 18) {
           return $this->age = $age;
       } else {
