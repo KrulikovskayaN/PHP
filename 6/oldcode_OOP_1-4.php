@@ -3,9 +3,9 @@
 // 2.1. Сделайте класс Employee (работник), в котором будут следующие свойства - name (имя), age (возраст), salary (зарплата).
 
 class Employee {
-    public $name;
-    public $age;
-    public $salary;
+    public string $name;
+    public int $age;
+    public int $salary;
 }	
 
 // 2.2. Создайте объект класса Employee, затем установите его свойства в следующие значения - имя 'Иван', возраст 25, зарплата 1000.
@@ -31,14 +31,16 @@ echo '<br>';
 // 2.5. Выведите на экран сумму возрастов Ивана и Васи.
 
 echo $employee->age + $employee1->age;
+echo '<br>';
+
  
 // 3.1. Сделать тренировочный метод show(), который будет выводить '!!!'    	
 
 class UserOne {
-    public $name;
-    public $age;
+    public string $name;
+    public int $age;
 
-    public function show() {
+    public function show(): string {
         return '!!!';
     }
 }
@@ -48,14 +50,15 @@ $user->name = 'Петя';
 $user->age = 20;
 
 echo $user->show();
+echo '<br>';
         
 // 3.2. Реализуйте такой же класс User с методом showW(), который параметром принимал какую-нибудь строку и добавлял ей в конец '!!!'    
 
 class User {
-    public $name;
-    public $age;
+    public string $name;
+    public int $age;
     
-    public function showW(string $str) {
+    public function showW(string $str): string {
         return $str . '!!!';
     }
 }
@@ -65,6 +68,7 @@ $user->name = 'Вася';
 $user->age = 25;
 
 echo $user->showW('Hello');        
+echo '<br>';
 
 /* 
 4.1. Сделайте класс EmployeeOne (работник), в котором будут следующие свойства - name (имя), age (возраст), salary (зарплата).
@@ -78,28 +82,29 @@ echo $user->showW('Hello');
 */
 
 class EmployeeOne {
-    public $name;
-    public $age;
-    public $salary;
+    public string $name;
+    public int $age;
+    public int $salary;
     
-    public function getName() {
+    public function getName(): string {
         return $this->name;
     }
     
-    public function getAge() {
+    public function getAge(): int {
         return $this->age;
     }
     
-    public function getSalary() {
+    public function getSalary(): int {
         return $this->salary;
     }
     
-    public function checkAge() {
+    public function checkAge(): bool  {
         if ($this->getAge() > 18) {
-             return 'true';
+             $result = true;
         } else {
-             return 'false';
+             $result = false;
       }
+      return $result;
    }
 }
     
@@ -114,7 +119,9 @@ $employeeOneTwo->age = 22;
 $employeeOneTwo->salary = 2002;
     
 echo $employeeOne->checkAge();
+echo '<br>';
 echo $employeeOne->getSalary() + $employeeOneTwo->getSalary();
+echo '<br>';
 
 // 4.7. Сделайте класс UserTwo, в котором будут следующие свойства - name (имя), age (возраст).
 // 4.8. Сделайте метод setAge, который параметром будет принимать новый возраст пользователя.
@@ -122,8 +129,8 @@ echo $employeeOne->getSalary() + $employeeOneTwo->getSalary();
 // Выведите новое значение возраста на экран.
 
 class UserTwo {
-    public $name;
-    public $age;
+    public string $name;
+    public int $age;
     
     public function setAge(int $age) {
         $this->age = $age;
@@ -137,20 +144,22 @@ $userTwo->age = 25;
 $userTwo->setAge(30);
 
 echo $userTwo->age;
-
+echo '<br>';
+echo '<br>';
 
 // 4.10. Модифицируйте метод setAge так, чтобы он вначале проверял, что переданный возраст больше или равен 18. Если это так - пусть
 // метод меняет возраст пользователя, а если не так - то ничего не делает.
 
 class UserTwoT {
-    public $age;
+    public int $age;
     
-    public function setAge(int $age) {
+    public function setAge(int $age): int {
       if ($age >= 18) {
-          return $this->age = $age;
+           $result = $this->age = $age;
       } else {
-          return 'Age less then 18';
+          $result = 'Age less then 18';
       }
+      return $result;
    }
 }
    
@@ -158,15 +167,17 @@ $userTwoT = new UserTwoT;
 $userTwoT->age = 17;
 
 echo $userTwoT->setAge(19);        
+echo '<br>';
+echo '<br>';
 
 // 4.11. Сделайте класс EmployeeDouble (работник), в котором будут следующие свойства - name (имя), salary (зарплата). Сделайте метод
 // doubleSalary, который текущую зарплату будет увеличивать в 2 раза.
 
 
 class EmployeeDouble {
-    public $salary;
+    public int $salary;
     
-    public function doubleSalary() {
+    public function doubleSalary(): int {
         return $this->salary*2;
     }
 }
@@ -175,20 +186,22 @@ $employeeDouble = new EmployeeDouble;
 $employeeDouble->salary = 5000;
 
 echo $employeeDouble->doubleSalary();      
+echo '<br>';
+echo '<br>';
 
 // 4.12. Сделайте класс Rectangle (прямоугольник), в котором в свойствах будут записаны ширина и высота.
 // 4.13. В классе Rectangle сделайте метод getSquare, который будет возвращать площадь этого прямоугольника.
 // 4.14. В классе Rectangle сделайте метод getPerimeter, который будет возвращать периметр этого прямоугольника.
 
 class Rectangle {
-    public $height;                
-    public $width;
+    public int $height;                
+    public int $width;
     
-    public function getSquare() {
+    public function getSquare(): int {
         return $this->height * $this->width;
     }
     
-    public function getPerimeter() {
+    public function getPerimeter(): int {
         return (2 * ($this->height + $this->width));  
     }
 }

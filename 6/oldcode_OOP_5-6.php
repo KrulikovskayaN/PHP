@@ -11,17 +11,21 @@
 */
 
 class User {
-    public $name;
-    public $age;
+    public string $name;
+    public int $age;
     
-    public function isAgeCorrect(int $age) {
+    public function isAgeCorrect(int $age): string { 
         if ($age >= 18 && $age <= 60) {
-            return true;
+            $result = true;
         } else { 
-            return false;
+            $result = false;
         }
+        return $result;
+        
+        //echo var_dump(isAgeCorrect(16));
+        //echo var_dump($result);
     }
-    
+      
     public function setAge(int $age) {
        if ($this->isAgeCorrect($age)) {
             $this->age = $age;
@@ -67,21 +71,22 @@ echo '<br>';
 */
 
 class Student {
-    public $name;
-    public $course;
+    public string $name;
+    public int $course;
      
-    public function transferToNextCourse() {
+    public function transferToNextCourse(): int {
         if ($this->isCourseCorrect()) {
             return $this->course++;  
         }
     }        
             
-    private function isCourseCorrect() {
+    private function isCourseCorrect(): int {
         if ($this->course >= 1 && $this->course <=4) {
-            return true;
+            $result = true;
         } else {
-            return false;
+            $result = false;
         }
+        return $result;
     }
 }
 

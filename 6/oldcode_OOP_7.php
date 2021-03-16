@@ -4,9 +4,9 @@
 // Сделайте так, чтобы эти свойства заполнялись в методе __construct при создании объекта.
 
 class Employee {
-    public $name;
-    public $age;
-    public $salary;
+    public string $name;
+    public int $age;
+    public int $salary;
     
     public function __construct(string $name, int $age, int $salary) {
         $this->name = $name;
