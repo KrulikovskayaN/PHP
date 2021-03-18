@@ -98,7 +98,7 @@ class EmployeeOne {
         return $this->salary;
     }
     
-    public function checkAge(): bool  {
+    public function checkAge(): bool {
         if ($this->getAge() > 18) {
              $result = true;
         } else {
@@ -132,10 +132,11 @@ class UserTwo {
     public string $name;
     public int $age;
     
-    public function setAge(int $age) {
+    public function setAge(int $age): void {
         $this->age = $age;
     }
 }
+
 
 $userTwo = new UserTwo;
 $userTwo->name = 'Коля';

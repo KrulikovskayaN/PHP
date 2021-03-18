@@ -20,26 +20,24 @@ class User {
         } else { 
             $result = false;
         }
-        return $result;
         
-        //echo var_dump(isAgeCorrect(16));
-        //echo var_dump($result);
+        return $result;
     }
       
-    public function setAge(int $age) {
+    public function setAge(int $age): void {
        if ($this->isAgeCorrect($age)) {
             $this->age = $age;
         }
     }
         
-    public function addAge(int $years) {
+    public function addAge(int $years): void {
         $newAge = $this->age + $years;
         if ($this->isAgeCorrect($newAge)) {
             $this->age = $newAge;
         }
     }
     
-    public function subAge(int $years) {
+    public function subAge(int $years): void {
         $newAge = $this->age - $years;
         if ($this->isAgeCorrect($newAge)) {
             $this->age = $newAge;
