@@ -99,12 +99,7 @@ class EmployeeOne {
     }
     
     public function checkAge(): bool {
-        if ($this->getAge() > 18) {
-             $result = true;
-        } else {
-             $result = false;
-      }
-      return $result;
+        return $this->getAge() > 18;
    }
 }
     

@@ -14,15 +14,10 @@ class User {
     public string $name;
     public int $age;
     
-    public function isAgeCorrect(int $age): string { 
-        if ($age >= 18 && $age <= 60) {
-            $result = true;
-        } else { 
-            $result = false;
-        }
-        
-        return $result;
+    public function isAgeCorrect(int $age): int {
+        return $age >= 18 && $age <= 60;
     }
+   
       
     public function setAge(int $age): void {
        if ($this->isAgeCorrect($age)) {
@@ -57,7 +52,7 @@ $user->addAge(2);
 echo $user->age;
 echo '<br>';
 
-$user->subAge(5);
+$user->subAge(4);
 echo $user->age;
 echo '<br>';
 
@@ -73,23 +68,19 @@ class Student {
     public int $course;
      
     public function transferToNextCourse(): int {
-        if ($this->isCourseCorrect()) {
-            return $this->course++;  
-        }
+         if ($this->isCourseCorrect()) {
+             $this->course++;  
+          }
+          return $this->course++; 
     }        
-            
+               
     private function isCourseCorrect(): int {
-        if ($this->course >= 1 && $this->course <=4) {
-            $result = true;
-        } else {
-            $result = false;
-        }
-        return $result;
+        return $this->course >= 1 && $this->course <=4; 
     }
 }
 
 $student = new Student;
 $student->name = 'Женя';
-$student->course = 2;
+$student->course = 1;
 
 echo $student->name . ' переведен на ' . $student->transferToNextCourse() . ' курс ';
