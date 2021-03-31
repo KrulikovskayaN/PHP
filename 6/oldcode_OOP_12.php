@@ -14,7 +14,7 @@ class Student {
     private string $name;
     private int $course;
     
-    public function __construct($name) {
+    public function __construct(string $name) {
         $this->name = $name;
         $this->course = 1;
     }
@@ -25,20 +25,11 @@ class Student {
     
     public function getCourse(): int {
         return $this->course;
-    }    
-    
-    /*
+    }     
+  
     public function transferToNextCourse(): void {
-        $this->course++;
-    } 
-    */
-    
-    public function transferToNextCourse(): void {
-        if ($this->course <= 5) {
-            $this->course++;
-        } else {
-            echo 'Студент закончил ВУЗ';
-            exit;
+        if ($this->course >= 1 and $this->course <= 5) {
+                $this->course++;
         }
     }
 }    
@@ -63,6 +54,4 @@ $student->transferToNextCourse();
 echo $student->getCourse(); // выведет 6
 echo '<br>';
 $student->transferToNextCourse();
-echo $student->getCourse(); // выведет Студент закончил ВУЗ 
-                 
-    
+echo $student->getCourse(); // выведет 6
