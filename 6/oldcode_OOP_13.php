@@ -12,7 +12,7 @@ class Arr {
         return $this->number;
     }
     
-    public function add($numbers): void {
+    public function add(array $numbers): void {
         $this->numbers = array_merge($this->numbers, $numbers);
     }
     
