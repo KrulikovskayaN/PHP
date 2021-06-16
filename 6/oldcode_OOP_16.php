@@ -9,7 +9,7 @@ class Arr {
         $this->numbers = $numbers;
     }
     
-    public function add($number): void {
+    public function add(int $number): void {
         $this->numbers[] = $number;    
     }
     
