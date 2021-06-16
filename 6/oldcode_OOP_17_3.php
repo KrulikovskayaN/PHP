@@ -6,9 +6,9 @@
 // вызвать метод getFullName, который вернет ФИО юзера (первую букву фамилии, имени и отчества).
 
 class User {
-    private string $surname;
-    private string $name;
-    private string $patronymic;
+    private string $surname = '';
+    private string $name = '';
+    private string $patronymic = '';
     
     public function setSurname(string $surname): self {
         $this->surname = $surname;
