@@ -62,11 +62,11 @@ class User {
     }    
     
     public function setName(string $name): void {
-        if (mb_strlen($name)>3) {
+        if (mb_strlen($name) > 3) {
             $this->name = $name;
         } else {
-             echo 'Меньше 3-х символов';
-         }             
+            echo 'Меньше 3-х символов';
+        }
     }    
     
     public function getAge(): int {
@@ -79,7 +79,7 @@ class User {
 }
 
 class Student extends User {
-    private $course;
+    private int $course;
     
     public function getCourse(): int {
         return $this->course;
@@ -90,7 +90,7 @@ class Student extends User {
     }
     
     public function setName(string $name): void {
-        if (mb_strlen($name)<10) {
+        if (mb_strlen($name) < 10) {
             parent::setName($name);
         } else {
              echo 'Больше 10-ти символов';    
@@ -106,7 +106,3 @@ echo '<br>';
 $student->setName('Микола');
 echo $student->getName();   
 echo '<br>';
-             
-                
-    
-                

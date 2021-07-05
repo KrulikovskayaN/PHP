@@ -23,3 +23,11 @@ echo $product1->name.'<br>';
 echo $product1->price.'<br>';
 echo $product2->name.'<br>';
 echo $product2->price.'<br>';
+
+// для наглядності цього можна ще
+$product1->name = 'cat';
+
+echo $product1->name.'<br>';
+echo $product2->name.'<br>';
+
+// вивід cat та cat, тобто коли змінюємо об'єкт 1, то об'єкт 2 теж змінюється

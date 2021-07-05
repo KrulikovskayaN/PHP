@@ -4,10 +4,11 @@
 
 class Arr {
     public array $number = [];
-    private int $sumHelper;
+    // тип ім'я класу, інстанс котрого ми збираємось туди зберегти
+    private SumHelper $sumHelper;
 
     public function __construct() {
-        $this->SumHelper = new SumHelper;
+        $this->sumHelper = new SumHelper;
     }
 
     public function add($num): void {
@@ -16,12 +17,13 @@ class Arr {
 
     public function getSum23(): int {
         $numb = $this->number;
-        return $this->SumHelper->getSum2($numb) + $this->SumHelper->getSum3($numb);
+
+        return $this->sumHelper->getSum2($numb) + $this->sumHelper->getSum3($numb);
     }
 }
 
 class SumHelper {
-    public function getSum2($numb): int {
+    public function getSum2(array $numb): int {
         $sum = 0;
         foreach ($numb as $elem) {
             $sum += pow($elem, 2);
@@ -29,7 +31,7 @@ class SumHelper {
         return $sum;
     }
 
-    public function getSum3($numb): int {
+    public function getSum3(array $numb): int {
         $sum = 0;
         foreach ($numb as $elem) {
             $sum += pow($elem, 3);
