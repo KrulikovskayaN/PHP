@@ -11,7 +11,7 @@ class Employee {
         return $this->salary;
     }
     
-    public function setSalary(int $salary): int {
+    public function setSalary(int $salary): void {
          $this->salary = $salary;
     }
 }    
@@ -26,8 +26,28 @@ class Programmer extends Employee {
     public function getLangs(): array {
         return $this->langs;
     }
+
+    // також можна зробити більш зручніше
+
+    public function addLang(string $lang): void
+    {
+        $this->langs[] = $lang;
+    }
+
+    public function deleteLang(string $lang): void
+    {
+        if ($key = array_search($lang, $this->langs)) {
+            // поглянь різницю між цими двома способами (але якщо коротко то array_slice перераховує ключі масиву)
+            // unset($this->langs[$key]);
+            \array_splice($this->langs, $key, 1);
+        }
+    }
 }
 
 $programmer = new Programmer;
 echo print_r($programmer->getLangs()) . '<br>';
-            
+$programmer->addLang('sql');
+$programmer->addLang('python');
+echo print_r($programmer->getLangs()) . '<br>';
+$programmer->deleteLang('js');
+echo print_r($programmer->getLangs()) . '<br>';

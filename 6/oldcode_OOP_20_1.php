@@ -46,9 +46,10 @@ $student = new Student();
 $student->setName('Сашко');
 $student->setCourse(2);
 $student->setAge(19);
+echo $student->getAge();
 
 $student->addOneYear();
-echo $student->getAge();                            
-             
+echo $student->getAge();
+
 
 

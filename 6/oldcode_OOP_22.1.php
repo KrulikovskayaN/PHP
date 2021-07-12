@@ -28,8 +28,8 @@ class Student extends User {
     private int $course;
     
     public function __construct($name, $age, $course) {
-        $this->name = $name;
-        $this->age = $age;
+        parent::__construct($name, $age);
+
         $this->course = $course;
     }     
     

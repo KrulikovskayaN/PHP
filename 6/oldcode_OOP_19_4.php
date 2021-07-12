@@ -38,6 +38,7 @@ class Employee extends User {
 }
 
 class Driver extends Employee {
+    // я б порадила не робити тавтології Driver має $drivingExperience, простіше Driver має $experience
     private int $drivingExperience;
     private string $drivingCategory;
     
